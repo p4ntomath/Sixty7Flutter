@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart'; // Firebase core import
 import 'package:sixty7/screens/forget_password.dart';
 import 'package:sixty7/screens/logout.dart';
+import 'package:sixty7/screens/main_screen.dart';
 import 'package:sixty7/screens/signin_screen.dart';
 import 'package:sixty7/screens/signup_screen.dart';
 import 'package:sixty7/screens/welcome_screen.dart';
@@ -22,7 +23,6 @@ void main() async {
   runApp(const MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  SignInScreen(),
+      home: MainScreens(),
     );
   }
 }
