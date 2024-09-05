@@ -156,6 +156,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             bool isSignedIn = await authService.signIn(
                               emailController.text,
                               passwordController.text,
+                              context
                             );
                             if (isSignedIn) {
                               Navigator.push(

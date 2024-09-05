@@ -1,64 +1,93 @@
-// ignore_for_file: avoid_print, prefer_final_fields, unused_local_variable
+// ignore_for_file: use_build_context_synchronously
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 class FirebaseAuthService {
   FirebaseAuth _auth = FirebaseAuth.instance;
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-Future<bool> signIn(String email, String password) async {
-  try {
-    // Sign in with Firebase Authentication
-    UserCredential userCredential = await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email, password: password);
+  Future<bool> signIn(String email, String password, BuildContext context) async {
+    // Show loading dialog
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => Center(child: CircularProgressIndicator()),
+    );
 
-    String uid = userCredential.user!.uid;
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
+      String uid = userCredential.user!.uid;
 
-    DocumentSnapshot<Map<String, dynamic>> userDoc = await FirebaseFirestore
-        .instance
-        .collection('users')
-        .doc(uid)
-        .get();
+      DocumentSnapshot<Map<String, dynamic>> userDoc = await _firestore
+          .collection('users')
+          .doc(uid)
+          .get();
 
-    if (userDoc.exists) {
-      Map<String, dynamic>? userData = userDoc.data();
-      String username = userData?['username'] ?? 'No username';
-      String userEmail = userData?['email'] ?? 'No email';
+      if (userDoc.exists) {
+        Map<String, dynamic>? userData = userDoc.data();
+        String username = userData?['username'] ?? 'No username';
+        String userEmail = userData?['email'] ?? 'No email';
 
-      print("Username: $username");
-      print("Email: $userEmail");
-
-      return true;
-    } else {
-      print("No user document found for this user.");
+        // Dismiss loading dialog
+        Navigator.of(context).pop();
+        return true;
+      } else {
+        Navigator.of(context).pop(); // Dismiss loading dialog
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('No user document found for this user.'),
+          ),
+        );
+        return false;
+      }
+    } on FirebaseAuthException catch (e) {
+      Navigator.of(context).pop(); // Dismiss loading dialog
+      String message;
+      if (e.code == 'user-not-found') {
+        message = 'No user found for that email.';
+      } else if (e.code == 'wrong-password') {
+        message = 'Wrong password provided for that user.';
+      } else {
+        message = 'An error occurred: ${e.message}';
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+        ),
+      );
+      return false;
+    } catch (e) {
+      Navigator.of(context).pop(); // Dismiss loading dialog
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('An error occurred: $e'),
+        ),
+      );
       return false;
     }
-  } on FirebaseAuthException catch (e) {
-    if (e.code == 'user-not-found') {
-      print('No user found for that email.');
-    } else if (e.code == 'wrong-password') {
-      print('Wrong password provided for that user.');
-    }
-    return false;
-  } catch (e) {
-    print('An error occurred: $e');
-    return false;
   }
-}
 
+  Future<bool> signUp(String email, String password, String username, BuildContext context) async {
+    // Show loading dialog
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => Center(child: CircularProgressIndicator()),
+    );
 
-  Future<bool> signUp(String email, String password, String username) async {
     try {
-      // Create user with email and password
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
       User? user = userCredential.user;
 
-      // Save user information in Firestore
       await _firestore.collection('users').doc(user?.uid).set({
         'uid': user?.uid,
         'username': username,
@@ -66,36 +95,85 @@ Future<bool> signIn(String email, String password) async {
         'createdAt': DateTime.now(),
       });
 
+      // Dismiss loading dialog
+      Navigator.of(context).pop();
       return true;
     } on FirebaseAuthException catch (e) {
+      Navigator.of(context).pop(); // Dismiss loading dialog
+      String message;
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        message = 'The password provided is too weak.';
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        message = 'The account already exists for that email.';
+      } else {
+        message = 'An error occurred: ${e.message}';
       }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+        ),
+      );
       return false;
     } catch (e) {
-      print(e);
+      Navigator.of(context).pop(); // Dismiss loading dialog
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('An error occurred: $e'),
+        ),
+      );
       return false;
     }
   }
 
-  Future<bool> signOut() async {
+  Future<bool> signOut(BuildContext context) async {
+    // Show loading dialog
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => Center(child: CircularProgressIndicator()),
+    );
+
     try {
       await _auth.signOut();
+      // Dismiss loading dialog
+      Navigator.of(context).pop();
       return true;
     } catch (e) {
-      print(e);
+      Navigator.of(context).pop(); // Dismiss loading dialog
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error signing out: $e'),
+        ),
+      );
       return false;
     }
   }
 
-  Future<bool> resetPassword(String email) async {
+  Future<bool> resetPassword(String email, BuildContext context) async {
+    // Show loading dialog
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => Center(child: CircularProgressIndicator()),
+    );
+
     try {
       await _auth.sendPasswordResetEmail(email: email);
+      // Dismiss loading dialog
+      Navigator.of(context).pop();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Password reset email sent.'),
+        ),
+      );
       return true;
     } catch (e) {
-      print(e);
+      Navigator.of(context).pop(); // Dismiss loading dialog
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error sending password reset email: $e'),
+        ),
+      );
       return false;
     }
   }

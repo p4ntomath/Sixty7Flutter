@@ -14,7 +14,7 @@ class LogOut extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () async {
             FirebaseAuthService authService = FirebaseAuthService();
-            if(await authService.signOut()) {
+            if(await authService.signOut(context)) {
               Navigator.push(context,
               MaterialPageRoute(builder: (context)
               => const WelcomeScreen()));

@@ -218,6 +218,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               emailController.text,
                               passwordController.text,
                               usernameController.text,
+                              context
                             );
                             if(signed) {
                               Navigator.push(

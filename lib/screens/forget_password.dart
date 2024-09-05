@@ -79,6 +79,7 @@ class ForgoPassword extends StatelessWidget {
                           FirebaseAuthService authService = FirebaseAuthService();
                           bool isSent = await authService.resetPassword(
                             emailController.text,
+                            context
                           );
                           if(isSent){
                             Navigator.push(
