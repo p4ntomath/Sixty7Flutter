@@ -63,12 +63,8 @@ class Preview extends StatelessWidget {
                             fit: BoxFit.cover,
                           )
                         else
-                          // Display a default asset image if no image is provided
                           Image.asset(
-                            'assets\images\noImage.jpg', // Use forward slashes in asset path
-                            width: double.infinity,
-                            height: 200,
-                            fit: BoxFit.cover,
+                            'assets/images/noImage1.jpg', // Use forward slashes in asset path
                           ),
                         const SizedBox(height: 16),
                         Text(
