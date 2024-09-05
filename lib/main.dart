@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart'; // Firebase core import
 import 'package:sixty7/screens/addPages/createjobspage.dart';
 import 'package:sixty7/screens/addPages/preview.dart';
+import 'package:sixty7/screens/addPages/previewCard.dart';
 import 'package:sixty7/screens/add_screen.dart';
 import 'package:sixty7/screens/forget_password.dart';
 import 'package:sixty7/screens/logout.dart';
@@ -38,14 +39,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:const Preview(
-                  name: 'Sample Service',
-                  description: 'This is a test description for the service.',
-                  location: 'Test Location',
-                  contact: '123-456-7890',
-                  imageData: null,  // Passing null for imageData
-                  imageFile: null,  // Passing null for imageFile
-                ),
+      home:AddScreen()
     );
   }
 }

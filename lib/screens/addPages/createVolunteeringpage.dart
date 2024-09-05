@@ -6,14 +6,14 @@ import 'dart:io'; // Import dart:io for File
 import 'dart:typed_data'; // Import for handling file data
 import 'preview.dart'; // Import the Preview screen
 
-class CreateJob extends StatefulWidget {
-  const CreateJob({super.key});
+class CreateVolunteering extends StatefulWidget {
+  const CreateVolunteering({super.key});
 
   @override
-  _CreateJobState createState() => _CreateJobState();
+  _CreateVolunteeringState createState() => _CreateVolunteeringState();
 }
 
-class _CreateJobState extends State<CreateJob> {
+class _CreateVolunteeringState extends State<CreateVolunteering> {
   XFile? _imageFile; // Holds the image file for mobile
   Uint8List? _imageData; // Holds the image data for web
   final ImagePicker _picker = ImagePicker();
@@ -24,7 +24,7 @@ class _CreateJobState extends State<CreateJob> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
-  final TextEditingController _contactController = TextEditingController();// Service Type Controller
+  final TextEditingController _contactController = TextEditingController();
 
   DateTime? _selectedDate;
   TimeOfDay? _selectedTime;
@@ -93,7 +93,7 @@ class _CreateJobState extends State<CreateJob> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create Job', style: TextStyle(color: Colors.white)),
+        title: const Text('Create Volunteering', style: TextStyle(color: Colors.white)),
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
@@ -127,7 +127,7 @@ class _CreateJobState extends State<CreateJob> {
                     )
                   else
                     Center(
-                      child: Text('No image selected'),
+                      child: const Text('No image selected'),
                     ),
                   const SizedBox(height: 20),
                   ElevatedButton(
@@ -147,16 +147,16 @@ class _CreateJobState extends State<CreateJob> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        // Job Name TextField
+                        // Volunteering Name TextField
                         TextFormField(
                           controller: _nameController,
                           decoration: const InputDecoration(
-                            labelText: 'Job Name',
+                            labelText: 'Volunteering Name',
                             border: OutlineInputBorder(),
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter a job name';
+                              return 'Please enter a volunteering name';
                             }
                             return null;
                           },
@@ -208,7 +208,6 @@ class _CreateJobState extends State<CreateJob> {
                           },
                         ),
                         const SizedBox(height: 16),
-                        // Service Type TextField
                         // Date Picker Button
                         TextButton(
                           onPressed: () => _selectDate(context),
@@ -244,7 +243,7 @@ class _CreateJobState extends State<CreateJob> {
                                     description: _descriptionController.text,
                                     location: _locationController.text,
                                     contact: _contactController.text,
-                                    type: 'Job', // Pass service type
+                                    type: 'Volunteering', // Pass service type
                                     date: _selectedDate?.toLocal().toString().split(' ')[0] ?? 'Not selected', // Pass date
                                     time: _selectedTime?.format(context) ?? 'Not selected', // Pass time
                                     imageData: _imageData,

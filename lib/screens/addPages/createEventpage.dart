@@ -6,14 +6,14 @@ import 'dart:io'; // Import dart:io for File
 import 'dart:typed_data'; // Import for handling file data
 import 'preview.dart'; // Import the Preview screen
 
-class CreateJob extends StatefulWidget {
-  const CreateJob({super.key});
+class CreateEvent extends StatefulWidget {
+  const CreateEvent({super.key});
 
   @override
-  _CreateJobState createState() => _CreateJobState();
+  _CreateEventState createState() => _CreateEventState();
 }
 
-class _CreateJobState extends State<CreateJob> {
+class _CreateEventState extends State<CreateEvent> {
   XFile? _imageFile; // Holds the image file for mobile
   Uint8List? _imageData; // Holds the image data for web
   final ImagePicker _picker = ImagePicker();
@@ -24,7 +24,7 @@ class _CreateJobState extends State<CreateJob> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
-  final TextEditingController _contactController = TextEditingController();// Service Type Controller
+  final TextEditingController _rsvpController = TextEditingController(); // Changed to RSVP
 
   DateTime? _selectedDate;
   TimeOfDay? _selectedTime;
@@ -93,7 +93,7 @@ class _CreateJobState extends State<CreateJob> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create Job', style: TextStyle(color: Colors.white)),
+        title: const Text('Create Event', style: TextStyle(color: Colors.white)),
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
@@ -147,16 +147,16 @@ class _CreateJobState extends State<CreateJob> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        // Job Name TextField
+                        // Event Name TextField
                         TextFormField(
                           controller: _nameController,
                           decoration: const InputDecoration(
-                            labelText: 'Job Name',
+                            labelText: 'Event Name',
                             border: OutlineInputBorder(),
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter a job name';
+                              return 'Please enter an event name';
                             }
                             return null;
                           },
@@ -193,22 +193,21 @@ class _CreateJobState extends State<CreateJob> {
                           },
                         ),
                         const SizedBox(height: 16),
-                        // Contact Details TextField
+                        // RSVP TextField
                         TextFormField(
-                          controller: _contactController,
+                          controller: _rsvpController,
                           decoration: const InputDecoration(
-                            labelText: 'Contact Details',
+                            labelText: 'RSVP',
                             border: OutlineInputBorder(),
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter contact details';
+                              return 'Please enter RSVP details';
                             }
                             return null;
                           },
                         ),
                         const SizedBox(height: 16),
-                        // Service Type TextField
                         // Date Picker Button
                         TextButton(
                           onPressed: () => _selectDate(context),
@@ -243,8 +242,8 @@ class _CreateJobState extends State<CreateJob> {
                                     name: _nameController.text,
                                     description: _descriptionController.text,
                                     location: _locationController.text,
-                                    contact: _contactController.text,
-                                    type: 'Job', // Pass service type
+                                    contact: _rsvpController.text, // Use RSVP details
+                                    type: 'Event', // Pass event type
                                     date: _selectedDate?.toLocal().toString().split(' ')[0] ?? 'Not selected', // Pass date
                                     time: _selectedTime?.format(context) ?? 'Not selected', // Pass time
                                     imageData: _imageData,

@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_this, use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +8,13 @@ class Service {
   String name; // Name of the service
   String location; // Location where the service is offered
   String description; // Description of the service
-  String imageUrl; //  of the service's image
+  String imageUrl; // URL of the service's image
   String contact; // Contact information for the service
+  String type; // Type of the service
+  String date; // Date of the service
+  String time; // Time of the service
 
-  // Constructor to initialize the properties
+  // Constructor with required fields
   Service({
     required this.applied,
     required this.name,
@@ -19,9 +22,12 @@ class Service {
     required this.description,
     required this.imageUrl,
     required this.contact,
+    required this.type,
+    required this.date,
+    required this.time,
   });
 
-  // Method to convert Service object to a map
+  // Method to convert Service object to a map for Firestore
   Map<String, dynamic> toMap() {
     return {
       'applied': applied,
@@ -30,6 +36,9 @@ class Service {
       'description': description,
       'imageUrl': imageUrl,
       'contact': contact,
+      'type': type,
+      'date': date,
+      'time': time,
     };
   }
 
@@ -42,35 +51,43 @@ class Service {
       description: map['description'],
       imageUrl: map['imageUrl'],
       contact: map['contact'],
+      type: map['type'],
+      date: map['date'],
+      time: map['time'],
     );
   }
 
-  // Method to add a Service object to Firestore
+  // Method to add a Service object to Firestore with a unique ID
   Future<bool> addToFirestore(BuildContext context) async {
     // Show loading dialog
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => Center(child: CircularProgressIndicator()),
+      builder: (context) => const Center(child: CircularProgressIndicator()),
     );
 
     try {
-      // Reference to the 'services' collection
+      // Reference to the 'services' collection in Firestore
       CollectionReference services = FirebaseFirestore.instance.collection('services');
 
-      // Add the Service data to the collection
-      await services.add(this.toMap());
+      // Add the Service data to the collection with auto-generated ID
+      DocumentReference docRef = await services.add(this.toMap());
 
-      // Dismiss loading dialog
+      // Optionally, you can also update the document with its unique ID
+      await docRef.update({'id': docRef.id});
+
+      // Dismiss the loading dialog
       Navigator.of(context).pop();
+
+      // Show success message
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Service added successfully!'),
         ),
       );
       return true;
     } catch (e) {
-      Navigator.of(context).pop(); // Dismiss loading dialog
+      Navigator.of(context).pop(); // Dismiss the loading dialog
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Error adding service: $e'),

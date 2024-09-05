@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sixty7/screens/addPages/createEventpage.dart';
+import 'package:sixty7/screens/addPages/createVolunteeringpage.dart';
+import 'package:sixty7/screens/addPages/createjobspage.dart';
 
 class AddScreen extends StatelessWidget {
   const AddScreen({super.key});
@@ -36,7 +39,10 @@ class AddScreen extends StatelessWidget {
                     ),
                   ),
                   onTap: () {
-                    // Add your onTap functionality here
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CreateJob()),
+                    );
                   },
                 ),
               ),
@@ -61,7 +67,10 @@ class AddScreen extends StatelessWidget {
                     ),
                   ),
                   onTap: () {
-                    // Add your onTap functionality here
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CreateEvent()),
+                    );
                   },
                 ),
               ),
@@ -86,7 +95,10 @@ class AddScreen extends StatelessWidget {
                     ),
                   ),
                   onTap: () {
-                    // Add your onTap functionality here
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CreateVolunteering()),
+                    );
                   },
                 ),
               ),
