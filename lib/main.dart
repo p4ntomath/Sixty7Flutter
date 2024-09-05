@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart'; // Firebase core import
+import 'package:sixty7/screens/donate_screen.dart';
 import 'package:sixty7/screens/forget_password.dart';
 import 'package:sixty7/screens/logout.dart';
 import 'package:sixty7/screens/main_screen.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MainScreens(),
+      home: DonateScreen(),
     );
   }
 }

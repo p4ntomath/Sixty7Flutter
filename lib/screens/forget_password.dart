@@ -1,10 +1,8 @@
 // ignore_for_file: sort_child_properties_last, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sixty7/auth/firebaseUserSession.dart';
 import 'package:sixty7/screens/signin_screen.dart';
-import 'package:sixty7/screens/welcome_screen.dart';
 
 class ForgoPassword extends StatelessWidget {
   ForgoPassword({super.key});
