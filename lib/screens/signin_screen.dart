@@ -1,7 +1,9 @@
-// ignore_for_file: sort_child_properties_last
+// ignore_for_file: sort_child_properties_last, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sixty7/auth/firebaseUserSession.dart';
+import 'package:sixty7/screens/logout.dart';
 import 'package:sixty7/screens/main_screen.dart';
 import 'package:sixty7/screens/signup_screen.dart';
 
@@ -147,14 +149,22 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                       const SizedBox(height: 20),
                       ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (formKey.currentState!.validate()) {
                             // Handle sign in logic
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const MainScreens()),
+                            FirebaseAuthService authService = FirebaseAuthService();
+                            bool isSignedIn = await authService.signIn(
+                              emailController.text,
+                              passwordController.text,
                             );
+                            if (isSignedIn) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const LogOut(),
+                                ),
+                              );
+                            }
                           }
                         },
                         child: const Text(

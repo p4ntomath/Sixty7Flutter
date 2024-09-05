@@ -10,9 +10,6 @@ class LogOut extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Log Out'),
-      ),
       body: Center(
         child: ElevatedButton(
           onPressed: () async {

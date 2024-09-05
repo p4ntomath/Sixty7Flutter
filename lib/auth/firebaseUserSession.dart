@@ -7,22 +7,47 @@ class FirebaseAuthService {
   FirebaseAuth _auth = FirebaseAuth.instance;
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<bool> signIn(String email, String password) async {
-    try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+Future<bool> signIn(String email, String password) async {
+  try {
+    // Sign in with Firebase Authentication
+    UserCredential userCredential = await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: password);
+
+    String uid = userCredential.user!.uid;
+
+
+    DocumentSnapshot<Map<String, dynamic>> userDoc = await FirebaseFirestore
+        .instance
+        .collection('users')
+        .doc(uid)
+        .get();
+
+    if (userDoc.exists) {
+      Map<String, dynamic>? userData = userDoc.data();
+      String username = userData?['username'] ?? 'No username';
+      String userEmail = userData?['email'] ?? 'No email';
+
+      print("Username: $username");
+      print("Email: $userEmail");
+
       return true;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
-      }
+    } else {
+      print("No user document found for this user.");
       return false;
     }
+  } on FirebaseAuthException catch (e) {
+    if (e.code == 'user-not-found') {
+      print('No user found for that email.');
+    } else if (e.code == 'wrong-password') {
+      print('Wrong password provided for that user.');
+    }
+    return false;
+  } catch (e) {
+    print('An error occurred: $e');
+    return false;
   }
+}
+
 
   Future<bool> signUp(String email, String password, String username) async {
     try {
