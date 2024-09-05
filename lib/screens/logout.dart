@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sixty7/auth/firebaseUserSession.dart';
@@ -10,14 +9,16 @@ class LogOut extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[50],
       body: Center(
         child: ElevatedButton(
           onPressed: () async {
             FirebaseAuthService authService = FirebaseAuthService();
-            if(await authService.signOut(context)) {
-              Navigator.push(context,
-              MaterialPageRoute(builder: (context)
-              => const WelcomeScreen()));
+            if (await authService.signOut(context)) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const WelcomeScreen()));
             }
           },
           child: const Text('Log Out'),

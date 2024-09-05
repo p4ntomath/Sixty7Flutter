@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sixty7/auth/firebaseUserSession.dart';
 import 'package:sixty7/screens/logout.dart';
-import 'package:sixty7/screens/main_screen.dart';
 import 'package:sixty7/screens/signup_screen.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -152,12 +151,12 @@ class _SignInScreenState extends State<SignInScreen> {
                         onPressed: () async {
                           if (formKey.currentState!.validate()) {
                             // Handle sign in logic
-                            FirebaseAuthService authService = FirebaseAuthService();
+                            FirebaseAuthService authService =
+                                FirebaseAuthService();
                             bool isSignedIn = await authService.signIn(
-                              emailController.text,
-                              passwordController.text,
-                              context
-                            );
+                                emailController.text,
+                                passwordController.text,
+                                context);
                             if (isSignedIn) {
                               Navigator.push(
                                 context,
@@ -176,7 +175,8 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                         ),
                         style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 18),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 50, vertical: 18),
                           backgroundColor: Colors.blue,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -191,23 +191,22 @@ class _SignInScreenState extends State<SignInScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text("Don't have an account? "),
-                    TextButton(onPressed: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SignUpScreen()),
-                      );
-                    }, child:  Text(
-                      'Sign In',
-                      style: TextStyle(
-                        color: Colors.blue
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignUpScreen()),
+                        );
+                      },
+                      child: Text(
+                        'Sign In',
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
                       ),
                     ),
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.zero,
-                        ),
-                    )
-                    ,
                   ],
                 ),
                 const SizedBox(height: 30),
@@ -220,8 +219,7 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   String? validateEmail(String? value) {
-    String emailPattern =
-        r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
+    String emailPattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
     RegExp regExp = RegExp(emailPattern);
     if (value == null || value.isEmpty) {
       return 'Email is required';
