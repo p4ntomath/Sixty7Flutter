@@ -14,7 +14,86 @@ class AddScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: const Center(child: Text('Add Screen')),
+      body: ListView(
+        padding: const EdgeInsets.all(16.0),
+        children: <Widget>[
+          Align(
+            alignment: Alignment.center,
+            child: SizedBox(
+              width: 300, // Max width constraint
+              child: Card(
+                elevation: 4.0, // Add elevation
+                margin: const EdgeInsets.symmetric(vertical: 8.0), // Margin around the card
+                child: ListTile(
+                  contentPadding: const EdgeInsets.all(10.0),
+                  title: Center(
+                    child: const Text(
+                      'Create Job',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  onTap: () {
+                    // Add your onTap functionality here
+                  },
+                ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: SizedBox(
+              width: 300, // Max width constraint
+              child: Card(
+                elevation: 4.0, // Add elevation
+                margin: const EdgeInsets.symmetric(vertical: 8.0), // Margin around the card
+                child: ListTile(
+                  contentPadding: const EdgeInsets.all(10.0),
+                  title: Center(
+                    child: const Text(
+                      'Add Event',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  onTap: () {
+                    // Add your onTap functionality here
+                  },
+                ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: SizedBox(
+              width: 300, // Max width constraint
+              child: Card(
+                elevation: 4.0, // Add elevation
+                margin: const EdgeInsets.symmetric(vertical: 8.0), // Margin around the card
+                child: ListTile(
+                  contentPadding: const EdgeInsets.all(10.0),
+                  title: Center(
+                    child: const Text(
+                      'Volunteering Opportunity',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  onTap: () {
+                    // Add your onTap functionality here
+                  },
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
