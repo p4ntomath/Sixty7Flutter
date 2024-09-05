@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "49458311327",
+    "project_id": "sixty7-afa11",
+    "storage_bucket": "sixty7-afa11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49458311327:android:fc0ec97d736a29b4c372aa",
+        "android_client_info": {
+          "package_name": "com.sixty7.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI-SNZsgkIWMJnq46zRyUGG-SJ3ZHrRu4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
