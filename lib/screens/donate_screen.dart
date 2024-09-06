@@ -15,274 +15,275 @@ class DonateScreen extends StatelessWidget {
 
         centerTitle: true,
       ),
-      body: Center(
-        child: Column(
-        children: [
-          SizedBox(height: 20.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.lightBlue,
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const donateMoney()),
-                  );
-                },
-                child: Container(
-                  width: 200,
-                  height: 75,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Money', style: TextStyle(color: Colors.white),),
-                      Icon(
-                          Icons.attach_money,
-                      color: Colors.white,)
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        SizedBox(height: 20.0),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('............................OR............................')
-          ],
-        ),
-          SizedBox(height: 20.0),
-          Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            Container(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const donateFood()),
-                  );
-                },
-                child: Container(
-                  width: 100,
-                  height: 75,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Food'),
-                      Icon(Icons.restaurant_sharp),
-                      ],
+        body: Center(
+          child: SingleChildScrollView( // Add SingleChildScrollView
+            child: Column(
+              children: [
+                SizedBox(height: 20.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.lightBlue,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const donateMoney()),
+                        );
+                      },
+                      child: Container(
+                        width: 200,
+                        height: 75,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('Money', style: TextStyle(color: Colors.white)),
+                            Icon(Icons.attach_money, color: Colors.white),
+                          ],
+                        ),
+                      ),
                     ),
+                  ],
                 ),
-              ),
+                SizedBox(height: 20.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('............................OR............................')
+                  ],
+                ),
+                SizedBox(height: 20.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Container(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const donateFood()),
+                          );
+                        },
+                        child: Container(
+                          width: 100,
+                          height: 75,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Food'),
+                              Icon(Icons.restaurant_sharp),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const donateClothes()),
+                          );
+                        },
+                        child: Container(
+                          width: 100,
+                          height: 75,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Clothes'),
+                              Icon(Icons.shopping_bag),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Container(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const donateHygiene()),
+                          );
+                        },
+                        child: Container(
+                          width: 100,
+                          height: 75,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Hygiene'),
+                              Icon(Icons.bathtub_rounded),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const donateToys()),
+                          );
+                        },
+                        child: Container(
+                          width: 100,
+                          height: 75,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Toys'),
+                              Icon(Icons.child_friendly_sharp),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Container(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const donatePads()),
+                          );
+                        },
+                        child: Container(
+                          width: 100,
+                          height: 75,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Pads and tampons'),
+                              Icon(Icons.health_and_safety),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const donateBooks()),
+                          );
+                        },
+                        child: Container(
+                          width: 100,
+                          height: 75,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Books'),
+                              Icon(Icons.menu_book),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Container(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const donateBed()),
+                          );
+                        },
+                        child: Container(
+                          width: 100,
+                          height: 75,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Bedding'),
+                              Icon(Icons.bed),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const donateComp()),
+                          );
+                        },
+                        child: Container(
+                          width: 100,
+                          height: 75,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Computers'),
+                              Icon(Icons.computer),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.lightBlue,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const donateOther()),
+                        );
+                      },
+                      child: Container(
+                        width: 200,
+                        height: 75,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Other...',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios_outlined,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-            Container(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const donateClothes()),
-                  );
-                },
-                child: Container(
-                  width: 100,
-                  height: 75,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Clothes'),
-                      Icon(Icons.shopping_bag),
-                    ],
-                  ),
-                ),
-              ),
-            )
-          ],
+          ),
         ),
-          SizedBox(height: 20.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Container(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const donateHygiene()),
-                    );
-                  },
-                  child: Container(
-                    width: 100,
-                    height: 75,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Hygiene'),
-                        Icon(Icons.bathtub_rounded),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const donateToys()),
-                    );
-                  },
-                  child: Container(
-                    width: 100,
-                    height: 75,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Toys'),
-                        Icon(Icons.child_friendly_sharp),
-                      ],
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-          SizedBox(height: 20.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Container(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const donatePads()),
-                    );
-                  },
-                  child: Container(
-                    width: 100,
-                    height: 75,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Pads and tampons'),
-                        Icon(Icons.health_and_safety),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const donateBooks()),
-                    );
-                  },
-                  child: Container(
-                    width: 100,
-                    height: 75,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Books'),
-                        Icon(Icons.menu_book),
-                      ],
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-          SizedBox(height: 20.0),
-          Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            Container(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const donateBed()),
-                  );
-                },
-                child: Container(
-                  width: 100,
-                  height: 75,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Bedding'),
-                      Icon(Icons.bed),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const donateComp()),
-                  );
-                },
-                child: Container(
-                  width: 100,
-                  height: 75,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Computers'),
-                      Icon(Icons.computer),
-                    ],
-                  ),
-                ),
-              ),
-            )
-          ],
-        ),
-          SizedBox(height: 20.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.lightBlue,
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const donateOther()),
-                  );
-                },
-                child: Container(
-                  width: 200,
-                  height: 75,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                          'Other...',
-                      style: TextStyle(color: Colors.white),),
-                      Icon(
-                          Icons.arrow_forward_ios_outlined,
-                      color: Colors.white,),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-
-      ),
     );
   }
 }
@@ -1004,98 +1005,100 @@ class donateMoney extends StatelessWidget {
         backgroundColor: Colors.lightBlue,
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-  // Header Image or Banner
-          Container(
-            height: 200.0,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                    'https://www.kindpng.com/picc/m/108-1084723_donate-button-png-image-transparent-png.png'),
-                fit: BoxFit.cover,
-              ),
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-          ),
-            SizedBox(height: 20.0),
-
-  // Donation Amount Input
-          TextField(
-          decoration: InputDecoration(
-              labelText: 'Enter Donation Amount in Rands',
-              prefixIcon: Icon(Icons.money),
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+      body: SingleChildScrollView( // Add SingleChildScrollView here
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Header Image or Banner
+              Container(
+                height: 200.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        'https://www.kindpng.com/picc/m/108-1084723_donate-button-png-image-transparent-png.png'),
+                    fit: BoxFit.cover,
                   ),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
-          keyboardType: TextInputType.number,
-          ),
-          SizedBox(height: 20.0),
+              SizedBox(height: 20.0),
 
-  // Payment Method Selection
-          DropdownButtonFormField<String>(
-              decoration: InputDecoration(
+              // Donation Amount Input
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Enter Donation Amount in Rands',
+                  prefixIcon: Icon(Icons.money),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(height: 20.0),
+
+              // Payment Method Selection
+              DropdownButtonFormField<String>(
+                decoration: InputDecoration(
                   labelText: 'Select Payment Method',
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
-              ),
-            items: <String>[
-              'Credit Card',
-              'PayPal',
-              'Google Pay',
-              'Apple Pay'
-                  ].map((String value) {
+                ),
+                items: <String>[
+                  'Credit Card',
+                  'PayPal',
+                  'Google Pay',
+                  'Apple Pay'
+                ].map((String value) {
                   return new DropdownMenuItem<String>(
-              value: value,
-              child: new Text(value),
+                    value: value,
+                    child: new Text(value),
                   );
-                  }).toList(),
-            onChanged: (_) {},
-          ),
-          SizedBox(height: 20.0),
+                }).toList(),
+                onChanged: (_) {},
+              ),
+              SizedBox(height: 20.0),
 
-  // Donate Button
-      ElevatedButton(
-        onPressed: () {
-  // Handle donation submission logic here
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text('Thank You!'),
-                content: Text('Your donation has been received.'),
-                actions: <Widget>[
-                  TextButton(
-                    child: Text('OK'),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      },
+              // Donate Button
+              ElevatedButton(
+                onPressed: () {
+                  // Handle donation submission logic here
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Thank You!'),
+                        content: Text('Your donation has been received.'),
+                        actions: <Widget>[
+                          TextButton(
+                            child: Text('OK'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.lightBlue,
+                  padding: EdgeInsets.symmetric(vertical: 16.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
-                ],
-              );
-              },
-          );
-          },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.lightBlue,
-          padding: EdgeInsets.symmetric(vertical: 16.0),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Text(
+                  'Donate Now',
+                  style: TextStyle(fontSize: 18.0, color: Colors.white),
+                ),
+              ),
+            ],
           ),
         ),
-        child: Text(
-          'Donate Now',
-          style: TextStyle(fontSize: 18.0, color: Colors.white),
-        ),
       ),
-        ],
-      ),
-    ),
     );
   }
 }
