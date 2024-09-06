@@ -125,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   // Horizontal ListView for popular items
 SizedBox(
-  height: 280.0, // Fixed height for horizontal list
+  height: 230.0, // Fixed height for horizontal list
   child: ListView.builder(
     scrollDirection: Axis.horizontal,
     padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),

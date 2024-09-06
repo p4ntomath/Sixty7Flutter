@@ -27,7 +27,7 @@ class _HomeCardState extends State<HomeCard> {
   Widget build(BuildContext context) {
     return Center(
       child: ConstrainedBox(
-        constraints: const BoxConstraints.tightFor(width: 300),
+        constraints: const BoxConstraints.tightFor(width: 350),
         child: Card(
           elevation: 5,
           child: Column(
