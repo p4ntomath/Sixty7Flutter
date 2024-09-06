@@ -9,6 +9,7 @@ class AddScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[50],
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: const Text(
@@ -16,6 +17,7 @@ class AddScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.white), // Set
       ),
       body: ListView(
         padding: const EdgeInsets.all(16.0),

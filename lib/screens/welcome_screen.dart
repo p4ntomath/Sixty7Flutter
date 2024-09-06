@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sixty7/screens/signin_screen.dart';
 import 'package:sixty7/screens/signup_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -8,6 +7,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[50],
       body: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(
@@ -41,7 +41,8 @@ class WelcomeScreen extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 15),
                         backgroundColor: Colors.blue,
-                        minimumSize: const Size(double.infinity, 50), // Full-width button
+                        minimumSize: const Size(
+                            double.infinity, 50), // Full-width button
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -66,7 +67,8 @@ class WelcomeScreen extends StatelessWidget {
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 15),
                         side: const BorderSide(color: Colors.blue),
-                        minimumSize: const Size(double.infinity, 50), // Full-width button
+                        minimumSize: const Size(
+                            double.infinity, 50), // Full-width button
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
