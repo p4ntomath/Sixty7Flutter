@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sixty7/screens/about_screen.dart';
 import 'package:sixty7/screens/help_screen.dart';
+import 'package:sixty7/screens/profile_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -33,7 +34,13 @@ class SettingsScreen extends StatelessWidget {
                 leading: const Icon(Icons.person, color: Colors.blue),
                 title: const Text('Profile'),
                 subtitle: const Text('Manage your profile information'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProfileScreen()),
+                  );
+                },
               ),
             ),
             const SizedBox(height: 10),

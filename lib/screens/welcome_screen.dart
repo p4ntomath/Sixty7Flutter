@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sixty7/screens/signin_screen.dart';
 import 'package:sixty7/screens/signup_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -35,7 +36,7 @@ class WelcomeScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const SignUpScreen()),
+                              builder: (context) => const SignInScreen()),
                         );
                       },
                       style: ElevatedButton.styleFrom(

@@ -17,9 +17,9 @@ class _MainScreensState extends State<MainScreens> {
 
   final List<Widget> _pages = [
     const HomeScreen(),
-    const HelpScreen(), // Added HelpScreen
-    const DonateScreen(),
     const AddScreen(),
+    const DonateScreen(),
+    const HelpScreen(),
     const SettingsScreen(),
   ];
 
@@ -31,6 +31,8 @@ class _MainScreensState extends State<MainScreens> {
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       backgroundColor: Colors.blueGrey[50],
       body: _pages[_selectedIndex],
@@ -42,16 +44,16 @@ class _MainScreensState extends State<MainScreens> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.help_outline), // Icon for Help
-            label: 'Help',
+            icon: Icon(Icons.add_circle_outline),
+            label: 'Add',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
             label: 'Donate',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_circle_outline),
-            label: 'Add',
+            icon: Icon(Icons.help_outline), // Icon for Help
+            label: 'Help',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
