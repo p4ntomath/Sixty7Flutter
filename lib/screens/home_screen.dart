@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:sixty7/screens/about_screen.dart';
-import 'package:sixty7/screens/help_screen.dart';
+import 'package:sixty7/screens/DataAcess/DataRetrieval'; // Adjust the import according to your project structure
+import 'package:sixty7/screens/components/homeCard.dart';
+import 'package:sixty7/screens/components/popularCard.dart';
 import 'package:sixty7/screens/register_page.dart'; // Import RegisterPage
-import 'package:sixty7/screens/sample_data.dart'; // Import your data model
-import 'package:sixty7/screens/settings_screen.dart';
-import 'carditem.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -27,28 +25,13 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  List<CardItem> get _filteredPopularItems {
-    return popularItems.where((item) {
-      return item.title.toLowerCase().contains(_searchQuery);
-    }).toList();
-  }
-
-  List<CardItem> get _filteredItems {
-    return items.where((item) {
-      return item.title.toLowerCase().contains(_searchQuery);
-    }).toList();
-  }
-
-  void _navigateToRegisterPage(CardItem item) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => RegisterPage(
-          title: item.title,
-          description: item.description,
-        ),
-      ),
-    );
+  Future<List<Map<String, dynamic>>> _fetchServices() async {
+    try {
+      FirestoreService firestoreService = FirestoreService();
+      return await firestoreService.fetchServices();
+    } catch (e) {
+      throw Exception('Failed to load services');
+    }
   }
 
   @override
@@ -62,279 +45,127 @@ class _HomeScreenState extends State<HomeScreen> {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        iconTheme:
-            IconThemeData(color: Colors.white), // Set drawer icon to white
+        iconTheme: IconThemeData(color: Colors.white), // Set drawer icon to white
       ),
-      drawer: Drawer(
-        child: SingleChildScrollView(
-          // Wrap in SingleChildScrollView to avoid overflow
-          child: ListView(
-            padding: EdgeInsets.zero,
-            shrinkWrap: true, // Make the ListView as small as its content
-            children: [
-              // Drawer Header
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    CircleAvatar(
-                      radius: 40,
-                      backgroundImage: AssetImage('assets/images/tutor02.jpg'),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      'Your Name',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
-                    ),
-                    Text(
-                      'your.email@example.com',
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              // Drawer Items
-              ListTile(
-                leading: Icon(Icons.info),
-                title: Text('About'),
-                onTap: () {
-                  // Navigate to About page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const AboutScreen()),
-                  );
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.person),
-                title: Text('Your Profile'),
-                onTap: () {
-                  // Navigate to Profile page
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Settings'),
-                onTap: () {
-                  // Navigate to Settings page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SettingsScreen()),
-                  );
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.help),
-                title: Text('Help & Support'),
-                onTap: () {
-                  // Navigate to Help & Support page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HelpScreen()),
-                  );
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.exit_to_app),
-                title: Text('Logout'),
-                onTap: () {
-                  // Handle logout
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-      body: Column(
-        children: [
-          // Search bar
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: _searchController,
-              decoration: InputDecoration(
-                hintText: 'Search...',
-                prefixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                  borderSide: BorderSide.none,
-                ),
-                filled: true,
-                fillColor: Colors.white,
-              ),
-            ),
-          ),
+      body: FutureBuilder<List<Map<String, dynamic>>>(
+        future: _fetchServices(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('No services found'));
+          } else {
+            final services = snapshot.data!;
+            final _filteredPopularItems = services.where((service) => service['type'] == 'Job').toList();
 
-          // Popular section
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Popular',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-          ),
+            final screenWidth = MediaQuery.of(context).size.width;
+            final cardWidth = screenWidth > 600 ? screenWidth / 2 - 20 : screenWidth - 20;
 
-          // Horizontal ListView for popular items
-          SizedBox(
-            height: 180.0, // Fixed height for horizontal list
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
-              itemCount: _filteredPopularItems.length,
-              itemBuilder: (context, index) {
-                final item = _filteredPopularItems[index];
-                return GestureDetector(
-                  onTap: () => _navigateToRegisterPage(item),
-                  child: Container(
-                    width: 150,
-                    margin: const EdgeInsets.only(right: 10.0),
-                    child: Card(
-                      elevation: 4,
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(8.0)),
-                              child: Image.asset(
-                                item.image, // Image from assets
-                                fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) {
-                                  return const Center(
-                                      child: Text('Image not found'));
-                                },
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: Text(
-                              item.title,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.center, // Center the title
-                            ),
-                          ),
-                        ],
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  // Search bar
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      controller: _searchController,
+                      decoration: InputDecoration(
+                        hintText: 'Search...',
+                        prefixIcon: const Icon(Icons.search),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                          borderSide: BorderSide.none,
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
                       ),
                     ),
                   ),
-                );
-              },
-            ),
-          ),
 
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'More...',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-          ),
-          // ListView of items (vertical)
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(10.0),
-              itemCount: _filteredItems.length, // Number of items
-              itemBuilder: (context, index) {
-                final item = _filteredItems[index];
-                return GestureDetector(
-                  onTap: () => _navigateToRegisterPage(item),
-                  child: Card(
-                    elevation: 4,
-                    margin: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Image section with rounded corners
-                        ClipRRect(
-                          borderRadius:
-                              BorderRadius.vertical(top: Radius.circular(8.0)),
-                          child: Container(
-                            width: double.infinity,
-                            height: 150,
-                            child: Image.asset(
-                              item.image, // Image from assets
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) {
-                                return const Center(
-                                    child: Text('Failed to load image'));
-                              },
-                            ),
-                          ),
+                  // Popular section
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Popular',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
-                        // Text section
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                item.title,
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                textAlign: TextAlign.center, // Center the title
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                item.description,
-                                style: TextStyle(color: Colors.grey[600]),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                'Time: ${item.time}',
-                                style: TextStyle(color: Colors.grey[700]),
-                              ),
-                              Text(
-                                'Place: ${item.place}',
-                                style: TextStyle(color: Colors.grey[700]),
-                              ),
-                              Text(
-                                'Duration: ${item.duration}',
-                                style: TextStyle(color: Colors.grey[700]),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
-                );
-              },
-            ),
-          ),
-        ],
+
+                  // Horizontal ListView for popular items
+                  SizedBox(
+                    height: 280.0, // Fixed height for horizontal list
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
+                      itemCount: _filteredPopularItems.length,
+                      itemBuilder: (context, index) {
+                        final item = _filteredPopularItems[index];
+                        return GestureDetector(
+                          onTap: () => {
+                            // TODO: Handle the tap event
+                          },
+                          child: PopularCard(
+                            title: item['name'] ?? 'No Title',
+                            location: item['location'] ?? 'No Location',
+                            type: item['type'] ?? 'Job',
+                            imageUrl: item['imageUrl'] ?? '',
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'More...',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  // Use Wrap for the HomeCard widgets
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Wrap(
+                      spacing: 10.0, // Space between the cards horizontally
+                      runSpacing: 10.0, // Space between rows
+                      children: List.generate(5, (index) {
+                        final item = services[index];
+                        return SizedBox(
+                          width: cardWidth, // Adjust card width based on screen size
+                          child: HomeCard(
+                            title: item['name'] ?? 'No Title',
+                            description: item['description'] ?? 'No Description',
+                            time: item['time'] ?? 'No Time',
+                            date: item['date'] ?? 'No Date',
+                            type: item['type'] ?? 'Job',
+                            imageUrl: item['imageUrl'] ?? '',
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
+        },
       ),
     );
   }
