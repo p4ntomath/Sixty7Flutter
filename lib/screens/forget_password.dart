@@ -74,12 +74,11 @@ class ForgoPassword extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () async {
                         if (formKey.currentState!.validate()) {
-                          FirebaseAuthService authService = FirebaseAuthService();
+                          FirebaseAuthService authService =
+                              FirebaseAuthService();
                           bool isSent = await authService.resetPassword(
-                            emailController.text,
-                            context
-                          );
-                          if(isSent){
+                              emailController.text, context);
+                          if (isSent) {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -97,7 +96,8 @@ class ForgoPassword extends StatelessWidget {
                         ),
                       ),
                       style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 18),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 50, vertical: 18),
                         backgroundColor: Colors.blue,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -115,8 +115,7 @@ class ForgoPassword extends StatelessWidget {
   }
 
   String? validateEmail(String? value) {
-    String emailPattern =
-        r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
+    String emailPattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
     RegExp regExp = RegExp(emailPattern);
     if (value == null || value.isEmpty) {
       return 'Email is required';

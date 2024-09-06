@@ -6,6 +6,7 @@ class DonateScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[50],
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: const Text(
@@ -14,6 +15,7 @@ class DonateScreen extends StatelessWidget {
         ),
 
         centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.white), // Set
       ),
         body: Center(
           child: SingleChildScrollView( // Add SingleChildScrollView

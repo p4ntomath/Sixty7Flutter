@@ -18,7 +18,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
 
@@ -168,7 +169,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         validator: validatePassword,
                       ),
                       const SizedBox(height: 20),
-                        TextFormField(
+                      TextFormField(
                         controller: confirmPasswordController,
                         obscureText: !_isConfirmPasswordVisible,
                         decoration: InputDecoration(
@@ -208,26 +209,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         validator: validateConfirmPassword,
                       ),
-                    const SizedBox(height: 40),
+                      const SizedBox(height: 40),
                       ElevatedButton(
                         onPressed: () async {
                           if (formKey.currentState!.validate()) {
-                            FirebaseAuthService authService = FirebaseAuthService();
+                            FirebaseAuthService authService =
+                                FirebaseAuthService();
                             bool signed = await authService.signUp(
-                              emailController.text,
-                              passwordController.text,
-                              usernameController.text,
-                              context
-                            );
-                            if(signed) {
+                                emailController.text,
+                                passwordController.text,
+                                usernameController.text,
+                                context);
+                            if (signed) {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => const LogOut(),
                                 ),
                               );
-
-                          }}
+                            }
+                          }
                         },
                         child: const Text(
                           'Sign Up',
@@ -237,7 +238,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                         style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 18),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 50, vertical: 18),
                           backgroundColor: Colors.blue,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -255,11 +257,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     TextButton(
                       onPressed: () {
                         Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const SignInScreen(),
-                              ),
-                            );
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SignInScreen(),
+                          ),
+                        );
                         // Navigate back to Sign In page
                       },
                       child: Text(
@@ -267,7 +269,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         style: TextStyle(color: Colors.blue),
                       ),
                       style: TextButton.styleFrom(
-                        padding:  EdgeInsets.zero,
+                        padding: EdgeInsets.zero,
                       ),
                     ),
                   ],
@@ -291,8 +293,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   String? validateEmail(String? value) {
-    String emailPattern =
-        r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
+    String emailPattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
     RegExp regExp = RegExp(emailPattern);
     if (value == null || value.isEmpty) {
       return 'Email is required';
@@ -310,13 +311,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
     return null;
   }
-  String? validateConfirmPassword(String? value) {
-  if (value == null || value.isEmpty) {
-    return 'Confirm password is required';
-  } else if (value != passwordController.text) {
-    return 'Passwords do not match';
-  }
-  return null;
-}
 
+  String? validateConfirmPassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Confirm password is required';
+    } else if (value != passwordController.text) {
+      return 'Passwords do not match';
+    }
+    return null;
+  }
 }

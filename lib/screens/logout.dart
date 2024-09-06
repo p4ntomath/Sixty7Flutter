@@ -8,14 +8,16 @@ class LogOut extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[50],
       body: Center(
         child: ElevatedButton(
           onPressed: () async {
             FirebaseAuthService authService = FirebaseAuthService();
-            if(await authService.signOut(context)) {
-              Navigator.push(context,
-              MaterialPageRoute(builder: (context)
-              => const WelcomeScreen()));
+            if (await authService.signOut(context)) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const WelcomeScreen()));
             }
           },
           child: const Text('Log Out'),

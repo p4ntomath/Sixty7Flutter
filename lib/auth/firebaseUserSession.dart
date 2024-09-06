@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:sixty7/auth/userSession.dart';
 
 class FirebaseAuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -33,7 +34,8 @@ class FirebaseAuthService {
         Map<String, dynamic>? userData = userDoc.data();
         String username = userData?['username'] ?? 'No username';
         String userEmail = userData?['email'] ?? 'No email';
-
+        UserSessionManager session =  UserSessionManager();
+        session.saveUserSession(username, userEmail);
         // Dismiss loading dialog
         Navigator.of(context).pop();
         return true;
@@ -95,7 +97,8 @@ class FirebaseAuthService {
         'createdAt': DateTime.now(),
       });
 
-      // Dismiss loading dialog
+      UserSessionManager session =  UserSessionManager();
+      session.saveUserSession(username, email);
       Navigator.of(context).pop();
       return true;
     } on FirebaseAuthException catch (e) {
@@ -135,7 +138,8 @@ class FirebaseAuthService {
 
     try {
       await _auth.signOut();
-      // Dismiss loading dialog
+      UserSessionManager session =  UserSessionManager();
+      session.clearSession();
       Navigator.of(context).pop();
       return true;
     } catch (e) {
