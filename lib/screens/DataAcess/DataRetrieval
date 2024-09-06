@@ -1,0 +1,26 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+
+class FirestoreService {
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
+
+  // Method to fetch all documents from the 'services' collection
+  Future<List<Map<String, dynamic>>> fetchServices() async {
+    try {
+      // Get the documents from the 'services' collection
+      QuerySnapshot querySnapshot = await _db.collection('services').get();
+
+      // Convert the documents to a list of maps
+      List<Map<String, dynamic>> servicesList = querySnapshot.docs.map((doc) {
+        return doc.data() as Map<String, dynamic>;
+      }).toList();
+
+      return servicesList;
+    } catch (e) {
+      // Show error message using SnackBar
+      print(e);
+      // Return an empty list if there's an error
+      return [];
+    }
+  }
+}
