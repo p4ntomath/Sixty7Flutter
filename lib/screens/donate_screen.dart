@@ -12,17 +12,50 @@ class DonateScreen extends StatelessWidget {
           'Donate',
           style: TextStyle(color: Colors.white),
         ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(20.0)
-          )
-        ),
+
         centerTitle: true,
       ),
       body: Center(
         child: Column(
         children: [
-          SizedBox(height: 30.0),
+          SizedBox(height: 20.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.lightBlue,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const donateMoney()),
+                  );
+                },
+                child: Container(
+                  width: 200,
+                  height: 75,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Money', style: TextStyle(color: Colors.white),),
+                      Icon(
+                          Icons.attach_money,
+                      color: Colors.white,)
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        SizedBox(height: 20.0),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('............................OR............................')
+          ],
+        ),
+          SizedBox(height: 20.0),
           Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
@@ -36,7 +69,7 @@ class DonateScreen extends StatelessWidget {
                 },
                 child: Container(
                   width: 100,
-                  height: 100,
+                  height: 75,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -57,7 +90,7 @@ class DonateScreen extends StatelessWidget {
                 },
                 child: Container(
                   width: 100,
-                  height: 100,
+                  height: 75,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -70,7 +103,7 @@ class DonateScreen extends StatelessWidget {
             )
           ],
         ),
-          SizedBox(height: 30.0),
+          SizedBox(height: 20.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
@@ -84,7 +117,7 @@ class DonateScreen extends StatelessWidget {
                   },
                   child: Container(
                     width: 100,
-                    height: 100,
+                    height: 75,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -105,7 +138,7 @@ class DonateScreen extends StatelessWidget {
                   },
                   child: Container(
                     width: 100,
-                    height: 100,
+                    height: 75,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -118,7 +151,7 @@ class DonateScreen extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(height: 30.0),
+          SizedBox(height: 20.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
@@ -132,7 +165,7 @@ class DonateScreen extends StatelessWidget {
                   },
                   child: Container(
                     width: 100,
-                    height: 100,
+                    height: 75,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -153,7 +186,7 @@ class DonateScreen extends StatelessWidget {
                   },
                   child: Container(
                     width: 100,
-                    height: 100,
+                    height: 75,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -166,7 +199,7 @@ class DonateScreen extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(height: 30.0),
+          SizedBox(height: 20.0),
           Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
@@ -180,7 +213,7 @@ class DonateScreen extends StatelessWidget {
                 },
                 child: Container(
                   width: 100,
-                  height: 100,
+                  height: 75,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -201,7 +234,7 @@ class DonateScreen extends StatelessWidget {
                 },
                 child: Container(
                   width: 100,
-                  height: 100,
+                  height: 75,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -214,7 +247,7 @@ class DonateScreen extends StatelessWidget {
             )
           ],
         ),
-          SizedBox(height: 30.0),
+          SizedBox(height: 20.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -230,12 +263,16 @@ class DonateScreen extends StatelessWidget {
                 },
                 child: Container(
                   width: 200,
-                  height: 80,
+                  height: 75,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Other...'),
-                      Icon(Icons.arrow_forward_ios_outlined),
+                      Text(
+                          'Other...',
+                      style: TextStyle(color: Colors.white),),
+                      Icon(
+                          Icons.arrow_forward_ios_outlined,
+                      color: Colors.white,),
                     ],
                   ),
                 ),
@@ -267,6 +304,7 @@ class donateOther extends StatelessWidget {
                 bottom: Radius.circular(20.0)
             )
         ),
+        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
       ),
       body: Padding(
@@ -344,6 +382,7 @@ class donateFood extends StatelessWidget {
                 bottom: Radius.circular(20.0)
             )
         ),
+        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
       ),
       body: Padding(
@@ -421,6 +460,7 @@ class donateClothes extends StatelessWidget {
                 bottom: Radius.circular(20.0)
             )
         ),
+        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
       ),
       body: Padding(
@@ -498,6 +538,7 @@ class donateHygiene extends StatelessWidget {
                 bottom: Radius.circular(20.0)
             )
         ),
+        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
       ),
       body: Padding(
@@ -575,6 +616,7 @@ class donateToys extends StatelessWidget {
                 bottom: Radius.circular(20.0)
             )
         ),
+        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
       ),
       body: Padding(
@@ -652,6 +694,7 @@ class donatePads extends StatelessWidget {
                 bottom: Radius.circular(20.0)
             )
         ),
+        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
       ),
       body: Padding(
@@ -672,7 +715,7 @@ class donatePads extends StatelessWidget {
 
             // Adding the description of the place
             Text(
-              'Orion Donation Facility',
+              'Caring4girls',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -729,6 +772,7 @@ class donateBooks extends StatelessWidget {
                 bottom: Radius.circular(20.0)
             )
         ),
+        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
       ),
       body: Padding(
@@ -806,6 +850,7 @@ class donateBed extends StatelessWidget {
                 bottom: Radius.circular(20.0)
             )
         ),
+        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
       ),
       body: Padding(
@@ -883,6 +928,7 @@ class donateComp extends StatelessWidget {
                 bottom: Radius.circular(20.0)
             )
         ),
+        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
       ),
       body: Padding(
@@ -943,4 +989,117 @@ class donateComp extends StatelessWidget {
     );
   }
 }
+
+class donateMoney extends StatelessWidget {
+  const donateMoney({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+            'Donate Now',
+        style: TextStyle(color: Colors.white)),
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: Colors.lightBlue,
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+  // Header Image or Banner
+          Container(
+            height: 200.0,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(
+                    'https://www.kindpng.com/picc/m/108-1084723_donate-button-png-image-transparent-png.png'),
+                fit: BoxFit.cover,
+              ),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+          ),
+            SizedBox(height: 20.0),
+
+  // Donation Amount Input
+          TextField(
+          decoration: InputDecoration(
+              labelText: 'Enter Donation Amount in Rands',
+              prefixIcon: Icon(Icons.money),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  ),
+              ),
+          keyboardType: TextInputType.number,
+          ),
+          SizedBox(height: 20.0),
+
+  // Payment Method Selection
+          DropdownButtonFormField<String>(
+              decoration: InputDecoration(
+                  labelText: 'Select Payment Method',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                  ),
+              ),
+            items: <String>[
+              'Credit Card',
+              'PayPal',
+              'Google Pay',
+              'Apple Pay'
+                  ].map((String value) {
+                  return new DropdownMenuItem<String>(
+              value: value,
+              child: new Text(value),
+                  );
+                  }).toList(),
+            onChanged: (_) {},
+          ),
+          SizedBox(height: 20.0),
+
+  // Donate Button
+      ElevatedButton(
+        onPressed: () {
+  // Handle donation submission logic here
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Thank You!'),
+                content: Text('Your donation has been received.'),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text('OK'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      },
+                  ),
+                ],
+              );
+              },
+          );
+          },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.lightBlue,
+          padding: EdgeInsets.symmetric(vertical: 16.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+        ),
+        child: Text(
+          'Donate Now',
+          style: TextStyle(fontSize: 18.0, color: Colors.white),
+        ),
+      ),
+        ],
+      ),
+    ),
+    );
+  }
+}
+
+
+
 
