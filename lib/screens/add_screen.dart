@@ -14,6 +14,7 @@ class AddScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.white), // Set
       ),
       body: const Center(child: Text('Add Screen')),
     );

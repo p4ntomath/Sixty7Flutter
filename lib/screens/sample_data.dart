@@ -10,6 +10,16 @@ final List<CardItem> popularItems = [
     duration: '1 hour',
   ),
   CardItem(
+    image: 'assets/images/plumber.jpg',
+    title: 'Plumbers Needed',
+    description:
+        'Hands-on plumbing work to gain practical experience in installation and repairs.',
+    time: '9:30 AM',
+    place: 'Plumbing Project Site',
+    duration: '4 hours',
+  ),
+
+  CardItem(
     image: 'assets/images/toys.jpg',
     title: 'Toys',
     description: 'Description for Popular Item 1',
@@ -48,6 +58,15 @@ final List<CardItem> items = [
     duration: '3 hours',
   ),
   CardItem(
+    image: 'assets/images/weld.jpg',
+    title: 'Welders Needed!!',
+    description:
+        'Hands-on training opportunity for welders to improve their craft.',
+    time: '9:00 AM',
+    place: 'Welding Workshop',
+    duration: '5 hours',
+  ),
+  CardItem(
     image: 'assets/images/tutor.jpeg',
     title: 'Math Tutoring Session',
     description:
@@ -66,13 +85,13 @@ final List<CardItem> items = [
     duration: '4 hours',
   ),
   CardItem(
-    image: 'assets/images/feed02.jpg',
-    title: 'Outdoor Yoga Class',
+    image: 'assets/images/conswork.jpg',
+    title: 'Construction Worker (Apprentice)',
     description:
-        'Join our outdoor yoga class to stretch, relax, and rejuvenate.',
-    time: '8:00 AM',
-    place: 'Sunset Park',
-    duration: '1.5 hours',
+        'Build foundational skills while assisting experienced builders.',
+    time: '7:00 AM',
+    place: 'Construction Site B',
+    duration: '6 hours',
   ),
 ];
 

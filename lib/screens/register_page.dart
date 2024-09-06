@@ -31,8 +31,13 @@ class _RegisterPageState extends State<RegisterPage> {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
+        iconTheme:
+            IconThemeData(color: Colors.white), // Set drawer icon to white
       ),
-      body: Padding(
+      resizeToAvoidBottomInset:
+          true, // Ensure content resizes when keyboard opens
+      body: SingleChildScrollView(
+        // Wrap content in SingleChildScrollView
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
@@ -127,7 +132,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               const SizedBox(height: 16),
 
-              // Submit button
+              // Register button (blue with white text)
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState?.validate() ?? false) {
@@ -137,7 +142,17 @@ class _RegisterPageState extends State<RegisterPage> {
                     );
                   }
                 },
-                child: const Text('Register'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue, // Button background color
+                  foregroundColor: Colors.white, // Button text color
+                  padding: const EdgeInsets.symmetric(vertical: 12.0),
+                ),
+                child: const Center(
+                  child: Text(
+                    'Register',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
               ),
             ],
           ),

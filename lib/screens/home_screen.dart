@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sixty7/screens/about_screen.dart';
+import 'package:sixty7/screens/help_screen.dart';
 import 'package:sixty7/screens/register_page.dart'; // Import RegisterPage
 import 'package:sixty7/screens/sample_data.dart'; // Import your data model
+import 'package:sixty7/screens/settings_screen.dart';
 import 'carditem.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -59,6 +62,99 @@ class _HomeScreenState extends State<HomeScreen> {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
+        iconTheme:
+            IconThemeData(color: Colors.white), // Set drawer icon to white
+      ),
+      drawer: Drawer(
+        child: SingleChildScrollView(
+          // Wrap in SingleChildScrollView to avoid overflow
+          child: ListView(
+            padding: EdgeInsets.zero,
+            shrinkWrap: true, // Make the ListView as small as its content
+            children: [
+              // Drawer Header
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    CircleAvatar(
+                      radius: 40,
+                      backgroundImage: AssetImage('assets/images/tutor02.jpg'),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'Your Name',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                    Text(
+                      'your.email@example.com',
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // Drawer Items
+              ListTile(
+                leading: Icon(Icons.info),
+                title: Text('About'),
+                onTap: () {
+                  // Navigate to About page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AboutScreen()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.person),
+                title: Text('Your Profile'),
+                onTap: () {
+                  // Navigate to Profile page
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('Settings'),
+                onTap: () {
+                  // Navigate to Settings page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SettingsScreen()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.help),
+                title: Text('Help & Support'),
+                onTap: () {
+                  // Navigate to Help & Support page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HelpScreen()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.exit_to_app),
+                title: Text('Logout'),
+                onTap: () {
+                  // Handle logout
+                },
+              ),
+            ],
+          ),
+        ),
       ),
       body: Column(
         children: [
