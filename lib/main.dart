@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart'; // Firebase core import
+import 'package:sixty7/screens/donate_screen.dart';
 import 'package:sixty7/auth/userSession.dart';
 import 'package:sixty7/screens/addPages/createjobspage.dart';
 import 'package:sixty7/screens/addPages/preview.dart';
@@ -11,6 +12,7 @@ import 'package:sixty7/screens/components/test.dart';
 import 'package:sixty7/screens/forget_password.dart';
 import 'package:sixty7/screens/logout.dart';
 import 'package:sixty7/screens/main_screen.dart';
+import 'package:sixty7/screens/settings_screen.dart';
 import 'package:sixty7/screens/signin_screen.dart';
 import 'package:sixty7/screens/signup_screen.dart';
 import 'package:sixty7/screens/welcome_screen.dart';

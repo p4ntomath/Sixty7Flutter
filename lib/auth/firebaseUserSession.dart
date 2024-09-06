@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:sixty7/auth/userSession.dart';
 
 class FirebaseAuthService {
-  FirebaseAuth _auth = FirebaseAuth.instance;
-  FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<bool> signIn(String email, String password, BuildContext context) async {
     // Show loading dialog
